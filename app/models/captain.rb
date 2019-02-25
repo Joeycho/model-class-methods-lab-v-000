@@ -10,7 +10,7 @@ class Captain < ActiveRecord::Base
       end
 
   def self.talented_seafarers
-    joins(boats: :classifications).group('classifications.name').where("classifications.name = ? OR classifications.name = ?",'Motorboat','Sailboat').order('captain.name DESC')
+    Captain.joins(boats: :classifications).group('classifications.name').order('name ASC').where("classifications.name = ? OR classifications.name = ?",'Motorboat','Sailboat')
   end
 
 
