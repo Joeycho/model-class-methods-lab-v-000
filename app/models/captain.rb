@@ -13,5 +13,8 @@ class Captain < ActiveRecord::Base
     joins(boats: :classifications).group('classifications.name').order('captains.name ASC').where("classifications.name = ? OR classifications.name = ?",'Motorboat','Sailboat')
   end
 
+  def self.non_sailors
+    joins(boats: :classifications).where.not(classifications: {name: 'Sailboat'}).uniq
+  end
 
 end
