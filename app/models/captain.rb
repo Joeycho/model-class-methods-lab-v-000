@@ -10,6 +10,7 @@ class Captain < ActiveRecord::Base
       end
 
   def self.talented_seafarers
+    binding.pry
     joins(boats: :classifications).group('classifications.name').order('name ASC').where("classifications.name = ? OR classifications.name = ?",'Motorboat','Sailboat')
   end
 
