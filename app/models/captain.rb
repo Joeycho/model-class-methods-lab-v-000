@@ -14,8 +14,7 @@ class Captain < ActiveRecord::Base
   end
 
   def self.non_sailors
-    binding.pry
-    joins(boats: :classifications).where.not("classifications.name = ?","Sailboat").uniq
+    where.not(name: self.sailors.pluck(:name))
   end
 
 end
